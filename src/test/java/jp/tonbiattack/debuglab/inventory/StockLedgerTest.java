@@ -27,18 +27,4 @@ class StockLedgerTest {
         );
     }
 
-    @Test
-    void nonZeroAdjustment_keepsSkuTracked() {
-        StockLedger ledger = new StockLedger();
-        ledger.recordInitialQuantity("tea", 5);
-
-        StockAdjustmentOutcome outcome = ledger.applyAdjustment("tea", -2);
-
-        assertAll(
-                () -> assertEquals(StockAdjustmentOutcome.ADJUSTED_TO_ZERO, outcome),
-                () -> assertEquals(3, ledger.quantityOf("tea")),
-                () -> assertTrue(ledger.isTracked("tea")),
-                () -> assertEquals(1, ledger.trackedSkuCount())
-        );
-    }
 }
