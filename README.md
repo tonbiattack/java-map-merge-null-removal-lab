@@ -10,7 +10,7 @@ Java標準ライブラリの`Map.merge`を使った在庫調整で、合計が0�
 | 修正コミット | [`2b516f8`](../../commit/2b516f8) — 在庫ゼロを整数0として保持する |
 | 外部I/O | 不使用。固定の文字列・整数・インメモリ`HashMap`だけを使う決定的な再現です。 |
 
-## 学習する契約
+## この題材で守る契約
 
 初期在庫`tea -> 5`に調整量`-5`を適用した後、台帳は`tea -> 0`を保存し、`tea`を追跡対象として保持しなければなりません。調整結果は`ADJUSTED_TO_ZERO`、在庫量は`0`、追跡有無は`true`、追跡SKU件数は`1`です。
 
@@ -20,6 +20,14 @@ Java標準ライブラリの`Map.merge`を使った在庫調整で、合計が0�
 | `quantityOf("tea")` | `0` | `-1`（未追跡を表すラボ上の値） |
 | `isTracked("tea")` | `true` | `false` |
 | `trackedSkuCount()` | `1` | `0` |
+
+## 最短の開始手順
+
+修正済みの`main`で全テストを実行するには、次の一行を使います。
+
+```bash
+mvn --batch-mode clean test
+```
 
 ## バグを再現する
 
@@ -69,6 +77,6 @@ return total;
 | `docs/debugging-record.md` | 調査と最小修正の記録 |
 | `docs/novelty-report.md` | 既存コンテンツとの差分記録 |
 
-## 参考文献
+## References
 
 [1]: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html#merge(K,V,java.util.function.BiFunction) "Java SE 21 API: Map#merge"
